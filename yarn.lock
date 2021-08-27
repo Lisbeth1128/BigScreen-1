@@ -381,7 +381,7 @@
   dependencies:
     "ms" "2.1.2"
 
-"echarts@5.0.2":
+"echarts@^5.0.2":
   "integrity" "sha512-En0VYpc96nw2/2AZoBWPHsGi471zMublttj50kfFpYAeR4geup0Tj9iVgEXh7QYZFPnRiruDJEjcB5PXZ+BYzQ=="
   "resolved" "https://registry.npmjs.org/echarts/-/echarts-5.0.2.tgz"
   "version" "5.0.2"
