@@ -5,7 +5,6 @@ import {px} from './px'
 export const Chart1 = () => {
     const divRef = useRef(null)
     useEffect(() => {
-      console.log(divRef.current)
       let myChart = echarts.init(divRef.current)
       // 绘制图表
       myChart.setOption({

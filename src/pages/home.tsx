@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './home.scss';
 import * as echarts from 'echarts'
 import { Chart1 } from '../components/chart-1';
+import { Chart2 } from '../components/chart-2';
 
 export const Home = () => {
   return (
@@ -13,6 +14,7 @@ export const Home = () => {
       <main>
         <section className="section1">
           <Chart1 />
+          <Chart2 />
         </section>
         <section className="section2"></section>
         <section className="section3"></section>
