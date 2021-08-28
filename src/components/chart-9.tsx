@@ -2,26 +2,17 @@ import React, { useEffect, useRef } from 'react'
 import * as echarts from 'echarts'
 import { px } from './px'
 
-export const Chart8 = () => {
+export const Chart9 = () => {
     const divRef = useRef(null)
     useEffect(() => {
         let myChart = echarts.init(divRef.current)
         // 绘制图表
         myChart.setOption({
-            legend: {
-                top: px(10),
-                right: px(50),
-                itemWidth: px(3),
-                itemHeight: px(3),
-                data: ['本周', '上周'],
-                textStyle: {
-                    color: 'inherit',
-                    fontSize: px(10)
-                }
-            },
             xAxis: {
                 type: 'category',
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                boundaryGap: false,
+                data: ['', '1月', '2月', '3月', '4月', '5月', '6月',
+                    '7月', '8月', '9月', '10月', '11月', '12月', ''],
                 axisTick: {
                     show: false
                 },
@@ -57,30 +48,30 @@ export const Chart8 = () => {
                     }
                 }
             },
-            series: [
-                {
-                    name: '上周',
-                    type: 'line',
-                    color: '#ffcf00',
+            series: [{
+                data: [27, 31, 21, 24, 35, 
+                    {value: 50,
                     symbol: 'circle',
-                    symbolSize: px(5),
-                    lineStyle: {
-                        width: px(1)
-                    },
-                    data: [10, 110, 90, 280, 200, 250, 290]
+                    symbolSize: px(7),}, 
+                    40, 31, 33, 38, 48, 45, 49, 50],
+                type: 'line',
+                color: '#00c7ff',
+                symbol: 'none',
+                smooth: true,
+                lineStyle: {
+                    width: px(1.5)
                 },
-                {
-                    name: '本周',
-                    type: 'line',
-                    color: '#00ff9c',
-                    symbol: 'circle',
-                    symbolSize: px(5),
-                    lineStyle: {
-                        width: px(1)
-                    },
-                    data: [110, 190, 180, 400, 290, 320, 190]
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                            { offset: 0, color: '#0054a0' },
+                            { offset: 0.5, color: '#05336a' },
+                            { offset: 1, color: '#091134' }
+                        ]
+                    )
                 }
-            ],
+            }],
             grid: {
                 top: px(45),
                 left: px(40),
@@ -91,9 +82,9 @@ export const Chart8 = () => {
     }, [])
 
     return (
-        <div className="周人流量">
-            <h2 className="title">每周人流流量分布情况</h2>
-            <div ref={divRef} className="chart8"></div>
+        <div className="重点疾病">
+            <h2 className="title">住院重点疾病检测</h2>
+            <div ref={divRef} className="chart9"></div>
         </div>
     )
 }

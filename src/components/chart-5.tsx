@@ -16,7 +16,8 @@ export const Chart5 = () => {
                 },
                 axisLabel: {
                     fontSize: px(8),
-                    color: 'white'
+                    color: 'white',
+                    interval: 0
                 },
                 axisLine: {
                     lineStyle: {
@@ -37,7 +38,7 @@ export const Chart5 = () => {
                 },
                 axisLabel: {
                     fontSize: px(10),
-                    color: 'white'
+                    color: 'white',
                 },
                 splitLine: {
                     lineStyle: {

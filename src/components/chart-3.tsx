@@ -27,7 +27,8 @@ export const Chart3 = () => {
                 },
                 axisLabel: {
                     fontSize: px(10),
-                    color: 'white'
+                    color: 'white',
+                    interval: 0
                 },
                 axisLine: {
                     lineStyle: {
