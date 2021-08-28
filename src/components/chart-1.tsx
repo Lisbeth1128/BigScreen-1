@@ -23,7 +23,7 @@ export const Chart1 = () => {
           itemWidth: px(3),
           itemHeight: px(3),
           textStyle: {
-            color: 'white',
+            color: 'inherit',
             fontSize: px(10)
           }
         },
