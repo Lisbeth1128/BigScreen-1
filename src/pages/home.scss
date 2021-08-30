@@ -226,6 +226,29 @@ header {
     }
     > .section7 {
       grid-area: box7;
+      color: white;
+      > table {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        > thead {
+          width: 100%;
+          height: 20%;
+          background-color: #121a36;
+          color: #00d49a;
+          font-size: px(10);
+        }
+        > tbody {
+          text-align: center;
+          font-size: px(10);
+          > tr:nth-child(even){
+            opacity: 0.5;
+          }
+          > tr > td:last-child {
+            color: #d57900;
+          }
+        }
+      }
     }
     > .section8 {
       grid-area: box8;
