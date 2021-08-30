@@ -10,6 +10,7 @@ import { Chart6 } from '../components/chart-6';
 import { Chart7 } from '../components/chart-7';
 import { Chart8 } from '../components/chart-8';
 import { Chart9 } from '../components/chart-9';
+import { Beijing } from '../components/map-beijing';
 
 export const Home = () => {
   return (
@@ -23,7 +24,9 @@ export const Home = () => {
           <Chart1 />
           <Chart2 />
         </section>
-        <section className="section2"></section>
+        <section className="section2">
+          <Beijing />
+        </section>
         <section className="section3">
           <Chart3 />
         </section>
