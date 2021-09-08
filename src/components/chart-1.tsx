@@ -4,10 +4,30 @@ import {px} from './px'
 
 export const Chart1 = () => {
     const divRef = useRef(null)
+    const myChart = useRef(null)
+    const data = [
+      { value: 780, name: '普通门诊' },
+      { value: 420, name: '急诊' },
+      { value: 540, name: '专家门诊' },
+      { value: 600, name: '副主任' },
+      { value: 660, name: '主任' }
+    ]
     useEffect(() => {
-      let myChart = echarts.init(divRef.current)
-      // 绘制图表
-      myChart.setOption({
+      setInterval(()=>{
+        const newData = [
+          { value: 1000 * Math.random(), name: '普通门诊' },
+          { value: 1000 * Math.random(), name: '急诊' },
+          { value: 1000 * Math.random(), name: '专家门诊' },
+          { value: 1000 * Math.random(), name: '副主任' },
+          { value: 1000 * Math.random(), name: '主任' }
+        ]
+        refresh(newData)
+      }, 1000)
+    }, [])
+
+    const refresh = (data) => {
+      myChart.current.setOption({
+        //animation: false,
         color: [
           '#00bcfc',
           '#ff6a00',
@@ -40,18 +60,19 @@ export const Chart1 = () => {
             labelLine: {
               show: false
             },
-            data: [
-              { value: 780, name: '普通门诊' },
-              { value: 420, name: '急诊' },
-              { value: 540, name: '专家门诊' },
-              { value: 600, name: '副主任' },
-              { value: 660, name: '主任' }
-            ],
+            data: data,
             width: '60%'
           }
         ]
-      });
+      })
+    }
+
+    useEffect(()=>{
+      myChart.current = echarts.init(divRef.current)
+      refresh(data)
     }, [])
+      
+
 
     return (
         <div className="接诊医师">
