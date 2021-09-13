@@ -4,10 +4,32 @@ import { px } from './px'
 
 export const Chart7 = () => {
     const divRef = useRef(null)
+    const myChart = useRef(null)
+    const data = [
+        { name: '内镜科', value: 90 },
+        { name: 'X 光摄影', value: 60 },
+        { name: 'M R I', value: 70 },
+        { name: 'C T', value: 85 },
+        { name: '心电图', value: 95 },
+        { name: 'B 超', value: 99 }
+    ]
+
     useEffect(() => {
-        let myChart = echarts.init(divRef.current)
-        // 绘制图表
-        myChart.setOption({
+        setInterval(() => {
+            const newData = [
+                { name: '内镜科', value: 100 * Math.random() },
+                { name: 'X 光摄影', value: 100 * Math.random() },
+                { name: 'M R I', value: 100 * Math.random() },
+                { name: 'C T', value: 100 * Math.random() },
+                { name: '心电图', value: 100 * Math.random() },
+                { name: 'B 超', value: 100 * Math.random() },
+            ]
+            updateData(newData)
+        }, 1000)
+    }, [])
+
+    const updateData = (data) => {
+        myChart.current.setOption({
             xAxis: {
                 type: 'value',
                 axisLabel: {
@@ -19,7 +41,7 @@ export const Chart7 = () => {
             },
             yAxis: {
                 type: 'category',
-                data: ['内镜科', 'X 光摄影', 'M R I', 'C T', '心电图', 'B 超'],
+                data: data.map(i => i.name),
                 axisLine: {
                     show: false
                 },
@@ -37,14 +59,14 @@ export const Chart7 = () => {
                     name: '2011年',
                     type: 'bar',
                     barWidth: '50%',
-                    data: [90, 60, 70, 85, 95, 99],
+                    data: data.map(i => i.value),
                     itemStyle: {
                         color: new echarts.graphic.LinearGradient(
                             1, 0, 0, 0,
                             [
-                                {offset: 0, color: '#00ffb7'},
-                                {offset: 0.5, color: '#00a779'},
-                                {offset: 1, color: '#004333'}
+                                { offset: 0, color: '#00ffb7' },
+                                { offset: 0.5, color: '#00a779' },
+                                { offset: 1, color: '#004333' }
                             ]
                         )
                     },
@@ -56,6 +78,11 @@ export const Chart7 = () => {
                 bottom: px(15)
             }
         })
+    }
+
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current)
+        updateData(data)
     }, [])
 
     return (

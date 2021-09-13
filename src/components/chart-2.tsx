@@ -20,11 +20,11 @@ export const Chart2 = () => {
                 { value: 400 * Math.random(), name: '糖尿病' },
                 { value: 400 * Math.random(), name: '高血压' }
             ]
-            x(newData)
+            updateData(newData)
         }, 1000)
     }, [])
 
-    const x = (data) => {
+    const updateData = (data) => {
         myChart.current.setOption({
                 xAxis: {
                     type: 'category',
@@ -103,7 +103,6 @@ export const Chart2 = () => {
         let newData = data.map(i => i.value)
         let maxData = Math.max(...newData)
         let index = newData.indexOf(maxData)
-        console.log(data[index])
         return data.map((x, i) => ({
             ...x,
             itemStyle: index === i ? maxColor : otherColor
@@ -111,7 +110,7 @@ export const Chart2 = () => {
     }
     useEffect(() => {
         myChart.current = echarts.init(divRef.current)
-        x(data)
+        updateData(data)
     }, [])
 
     return (

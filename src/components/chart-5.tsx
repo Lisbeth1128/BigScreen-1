@@ -4,13 +4,33 @@ import { px } from './px'
 
 export const Chart5 = () => {
     const divRef = useRef(null)
+    const myChart = useRef(null)
+    const data = [
+        { name: '外科', value: 7 },
+        { name: '神经科', value: 4.5 },
+        { name: '呼吸科', value: 4.7 },
+        { name: '儿科', value: 1.8 },
+        { name: '骨科', value: 2.8 }
+    ]
+
     useEffect(() => {
-        let myChart = echarts.init(divRef.current)
-        // 绘制图表
-        myChart.setOption({
+        setInterval(() => {
+            const newData = [
+                { name: '外科', value: 8 * Math.random() },
+                { name: '神经科', value: 8 * Math.random() },
+                { name: '呼吸科', value: 8 * Math.random() },
+                { name: '儿科', value: 8 * Math.random() },
+                { name: '骨科', value: 8 * Math.random() }
+            ]
+            updateData(newData)
+        }, 1000)
+    }, [])
+
+    const updateData = (data) => {
+        myChart.current.setOption({
             xAxis: {
                 type: 'category',
-                data: ['外科', '神经科', '呼吸科', '儿科', '骨科'],
+                data: data.map(i => i.name),
                 axisTick: {
                     show: false
                 },
@@ -48,31 +68,9 @@ export const Chart5 = () => {
                 }
             },
             series: [{
-                data: [{
-                    value: 7,
-                    itemStyle: {
-                        color: new echarts.graphic.LinearGradient(
-                            0, 0, 0, 1,
-                            [
-                                { offset: 0, color: '#f19100' },
-                                { offset: 0.5, color: '#9c5d00' },
-                                { offset: 1, color: '#432600' }
-                            ]
-                        )
-                    },
-                }, 4.5, 4.7, 1.8, 2.8],
+                data: maxNum(data),
                 type: 'bar',
                 barWidth: '50%',
-                itemStyle: {
-                    color: new echarts.graphic.LinearGradient(
-                        0, 0, 0, 1,
-                        [
-                            { offset: 0, color: '#00ffb7' },
-                            { offset: 0.5, color: '#00a779' },
-                            { offset: 1, color: '#004333' }
-                        ]
-                    )
-                },
             }],
             grid: {
                 top: px(45),
@@ -81,6 +79,41 @@ export const Chart5 = () => {
                 bottom: px(30),
             }
         })
+    }
+
+    function maxNum(data) {
+        let maxColor = {
+            color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [
+                    { offset: 0, color: '#f19100' },
+                    { offset: 0.5, color: '#9c5d00' },
+                    { offset: 1, color: '#432600' }
+                ]
+            )
+        }
+        let otherColor = {
+            color: new echarts.graphic.LinearGradient(
+                0, 0, 0, 1,
+                [
+                    { offset: 0, color: '#00ffb7' },
+                    { offset: 0.5, color: '#00a779' },
+                    { offset: 1, color: '#004333' }
+                ]
+            )
+        }
+        let newData = data.map(i => i.value)
+        let maxData = Math.max(...newData)
+        let index = newData.indexOf(maxData)
+        return data.map((x, i) => ({
+            ...x,
+            itemStyle: index === i ? maxColor : otherColor
+        }))
+    }
+
+    useEffect(() => {
+        myChart.current = echarts.init(divRef.current)
+        updateData(data)
     }, [])
 
     return (

@@ -14,9 +14,9 @@ export const Beijing = () => {
             series: [{
                 type: 'map',
                 map: 'BJ',
-                data: [
+                /* data: [
                     { name: '东城区', value: 1 }
-                ],
+                ], */
                 label: { show: true, color: 'white', fontSize: px(6) },
                 itemStyle: {
                     areaColor: '#0a0b34',

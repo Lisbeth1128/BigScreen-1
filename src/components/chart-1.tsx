@@ -21,11 +21,11 @@ export const Chart1 = () => {
           { value: 1000 * Math.random(), name: '副主任' },
           { value: 1000 * Math.random(), name: '主任' }
         ]
-        refresh(newData)
+        updateData(newData)
       }, 1000)
     }, [])
 
-    const refresh = (data) => {
+    const updateData = (data) => {
       myChart.current.setOption({
         //animation: false,
         color: [
@@ -69,7 +69,7 @@ export const Chart1 = () => {
 
     useEffect(()=>{
       myChart.current = echarts.init(divRef.current)
-      refresh(data)
+      updateData(data)
     }, [])
       
 
